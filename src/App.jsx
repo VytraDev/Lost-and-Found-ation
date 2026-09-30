@@ -3,6 +3,7 @@ import items from './data.js'
 import ItemCard from './ItemCard.jsx'
 
 function App() {
+  const [query, setQuery] = useState('')
   const [hideClaimed, setHideClaimed] = useState(false)
 
   return (
@@ -30,6 +31,7 @@ function App() {
             <span className="records-badge">LF / 26</span>
           </div>
           <div className="toolbar">
+            <input type="search" aria-label="Search items" placeholder="Search by item name" value={query} onChange={(event) => setQuery(event.target.value)} />
             <label><input type="checkbox" checked={hideClaimed} onChange={(event) => setHideClaimed(event.target.checked)} /> Hide claimed</label>
           </div>
           <div className="list-head" aria-hidden="true">
@@ -40,7 +42,8 @@ function App() {
           </div>
 
           <div className="item-list">
-            {items.filter((item) => !hideClaimed || item.status !== 'claimed').map((item) => <ItemCard key={item.id} item={item} />)}
+            {items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase()) && 
+            (!hideClaimed || item.status !== 'claimed')).map((item) => <ItemCard key={item.id} item={item} />)}
           </div>
         </section>
       </main>
