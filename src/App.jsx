@@ -4,7 +4,6 @@ import ItemCard from './ItemCard.jsx'
 
 function App() {
   const [hideClaimed, setHideClaimed] = useState(false)
-  console.log(hideClaimed)
 
   return (
     <div className="site">
