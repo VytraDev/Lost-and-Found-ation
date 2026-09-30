@@ -30,7 +30,7 @@ function App() {
             <span className="records-badge">LF / 26</span>
           </div>
           <div className="toolbar">
-            <label><input type="checkbox" checked={hideClaimed} onChange={(event) => setHideClaimed(event.target.checked)} /> Hide claimd</label>
+            <label><input type="checkbox" checked={hideClaimed} onChange={(event) => setHideClaimed(event.target.checked)} /> Hide claimed</label>
           </div>
           <div className="list-head" aria-hidden="true">
             <span>No.</span>
