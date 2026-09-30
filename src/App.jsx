@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import items from './data.js'
 import ItemCard from './ItemCard.jsx'
 
 function App() {
+  const [query, setQuery] = useState('')
 
   return (
     <div className="site">
@@ -27,7 +29,10 @@ function App() {
             </div>
             <span className="records-badge">LF / 26</span>
           </div>
-          <div className="toolbar"></div>
+          <div className="toolbar">
+            <input type="search" aria-label="Search items" placeholder="Search" 
+            value={query} onChange={(event) => setQuery(event.target.value)} />
+          </div>
           <div className="list-head" aria-hidden="true">
             <span>No.</span>
             <span>Item / place</span>
@@ -36,7 +41,8 @@ function App() {
           </div>
 
           <div className="item-list">
-            {items.map((item) => <ItemCard key={item.id} item={item} />)}
+            {items.filter((item) => item.name.includes(query)).map((item) => 
+            <ItemCard key={item.id} item={item} />)}
           </div>
         </section>
       </main>
