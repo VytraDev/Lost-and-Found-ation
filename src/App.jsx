@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import items from './data.js'
 import ItemCard from './ItemCard.jsx'
 
 function App() {
+  const [hideClaimed, setHideClaimed] = useState(false)
 
   return (
     <div className="site">
@@ -27,7 +29,9 @@ function App() {
             </div>
             <span className="records-badge">LF / 26</span>
           </div>
-          <div className="toolbar"></div>
+          <div className="toolbar">
+            <label><input type="checkbox" checked={hideClaimed} onChange={(event) => setHideClaimed(event.target.checked)} /> Hide claimed</label>
+          </div>
           <div className="list-head" aria-hidden="true">
             <span>No.</span>
             <span>Item / place</span>
@@ -36,7 +40,7 @@ function App() {
           </div>
 
           <div className="item-list">
-            {items.map((item) => <ItemCard key={item.id} item={item} />)}
+            {items.filter((item) => !hideClaimed || item.status !== 'claimed').map((item) => <ItemCard key={item.id} item={item} />)}
           </div>
         </section>
       </main>
