@@ -28,7 +28,7 @@ function App() {
               <p className="records-label">The register</p>
               <h2 id="records-title">Handed in</h2>
             </div>
-            <span className="records-badge">LF / 26</span>
+            <span className="records-badge">{items.length} items, {items.filter((item) => item.status === 'claimed').length} claimed</span>
           </div>
           <div className="toolbar">
             <input type="search" aria-label="Search items" placeholder="Search by item name" value={query} onChange={(event) => setQuery(event.target.value)} />
