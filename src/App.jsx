@@ -30,7 +30,7 @@ function App() {
             <span className="records-badge">LF / 26</span>
           </div>
           <div className="toolbar">
-            <input type="search" aria-label="Search items" placeholder="Search" 
+            <input type="search" aria-label="Search items" placeholder="Search by item name" 
             value={query} onChange={(event) => setQuery(event.target.value)} />
           </div>
           <div className="list-head" aria-hidden="true">
@@ -41,7 +41,7 @@ function App() {
           </div>
 
           <div className="item-list">
-            {items.filter((item) => item.name.includes(query)).map((item) => 
+            {items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).map((item) => 
             <ItemCard key={item.id} item={item} />)}
           </div>
         </section>
